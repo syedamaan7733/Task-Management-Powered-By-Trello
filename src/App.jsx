@@ -2,14 +2,29 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
+import { Home } from "./Components/Home";
+import { color } from "framer-motion";
+import { Boards } from "./Components/Boards";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
-  const [count, setCount] = useState(0);
-
+  const routes = [
+    {
+      path: "/",
+      element: <Home />,
+    },
+    {
+      path: "/createBoard",
+      element: <Boards />,
+    },
+  ];
   return (
     <>
-      <h1>Task Management App Powered By Trello</h1>
-      <h3>Testing....</h3>
+      <Routes>
+        {routes.map((route) => {
+          return <Route path={route.path} element={route.element} />;
+        })}
+      </Routes>
     </>
   );
 }
